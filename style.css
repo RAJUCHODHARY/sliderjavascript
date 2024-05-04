@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    padding: 0 35px;
+    background-color: blueviolet;
+}
+
+.crauser .card {
+    scroll-snap-align: start;
+    height: 200px;
+    width: 184px;
+    margin: 0 1px;
+    border-radius: 8px;
+    list-style: none;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.wrapper {
+    max-width: 1100;
+    width: 100%;
+    position: relative;
+}
+
+.wrapper i {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+    line-height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    font-size: 1.25rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+    transform: translateY(-50%);
+}
+
+.wrapper i:first-child {
+    left: -22px;
+}
+
+.wrapper i:last-child {
+    right: -22px;
+}
+
+.wrapper .crauser {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% /3)-12);
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: 0;
+}
+
+.crauser.notranslet {
+    scroll-behavior: auto;
+}
+
+.crauser:where(.card, .img) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crauser::-webkit-scrollbar {
+    display: none;
+}
+
+.crauser.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+.crauser.dragging.card {
+    cursor: grab;
+    user-select: none;
+}
+
+.card .img img {
+    width: 187px;
+    height: 200px;
+    object-fit: cover;
+}
+
+@media screen and (mix-width:900px) {
+    .wrapper .crauser {
+        grid-auto-columns: calc((100% /2)-9);
+    }
+}
+
+@media screen and (mix-width:600px) {
+    .wrapper .crauser {
+        grid-auto-columns: 100%;
+    }
+}
